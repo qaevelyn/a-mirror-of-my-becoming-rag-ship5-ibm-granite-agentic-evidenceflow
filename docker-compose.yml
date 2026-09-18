@@ -1,0 +1,21 @@
+# ============================================================
+# ship5-ibm-granite-agentic-evidenceflow — docker-compose.yml
+# Copyright (c) 2026 Evelyn Caro. All rights reserved.
+# ============================================================
+# Usage:
+#   docker compose up --build
+#
+# Requires Ollama running on the host machine with the granite4.1:3b model pulled.
+# ============================================================
+
+services:
+  ship5-ibm-granite-agentic-evidenceflow:
+    build: .
+    image: ship5-ibm-granite-agentic-evidenceflow:latest
+    container_name: ship5-ibm-granite-agentic-evidenceflow
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    volumes:
+      - ./chroma_db:/app/chroma_db
