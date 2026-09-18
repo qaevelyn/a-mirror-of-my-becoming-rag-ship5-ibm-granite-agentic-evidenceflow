@@ -8,8 +8,6 @@ venv
 __pycache__
 *.pyc
 
-# ChromaDB (rebuilt at runtime or mounted as volume)
-chroma_db/
 
 # Notebooks (source of record, not needed in container)
 *.ipynb
