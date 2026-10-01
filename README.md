@@ -1,4 +1,4 @@
-# Ship 5: IBM Granite Agentic RAG with EvidenceFlow Verification
+# ship5 of the A Mirror of My Becoming fleet — Ship 5: IBM Granite Agentic RAG with EvidenceFlow Verification
 
 **Built:** August – September 2026
 **Author:** Evelyn Caro
