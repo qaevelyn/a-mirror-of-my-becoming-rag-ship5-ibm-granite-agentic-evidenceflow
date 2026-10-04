@@ -1,111 +1,89 @@
-# ship5 of the A Mirror of My Becoming fleet — Ship 5: IBM Granite Agentic RAG with EvidenceFlow Verification
+# Ship 5 — IBM Granite Agentic RAG with EvidenceFlow Verification — Local
 
-**Built:** August – September 2026
+**The ship that refuses to guess.**
+
+Ship 5 of A Mirror of My Becoming. Built August–September 2026 on an 8 GB Intel MacBook Air. Runs fully local: IBM Granite 4.1 (3B) and nomic-embed-text via Ollama, with an EvidenceFlow verification layer over the RAG core. Every retrieval is assigned a traceable evidence ID. Fail-closed by design.
+
 **Author:** Evelyn Caro
-**Status:** ✅ Built and working
 
 ---
 
-## Origin
+## What it does
 
-The fifth ship is the one that can prove its answers.
+The local RAG core — corpus, chunking, embeddings, Chroma store — plus the EvidenceFlow layer, implemented in ~30 lines of verifiable code:
 
-Ships 1 through 4 could retrieve and generate. Ship 5 could verify. Every claim is 
-traceable to an evidence ID. Every answer is checked against its sources. If the 
-evidence is missing, the pipeline abstains — it does not hallucinate.
+1. Every retrieved chunk is assigned an evidence ID: `EVI-YYYY-MM-DD-HHMMSS-uuid8`
+2. Each ID is tracked in an evidence registry with its chunk content, source, and timestamp
+3. Before an answer ships, `verify_claims()` checks every evidence ID against the registry
+4. **If an ID is missing from the registry, verification fails — and the system reports it instead of answering**
 
-This is the ship built for the work that matters: genealogy. When you are looking 
-for a name that was taken from your family, a plausible guess is not good enough. 
-You need proof. You need to know which document says what, and where.
-
-Ship 5 was built to solve that.
+The verification layer is additive to the RAG core, not a replacement: Ship 4's agentic pattern stays, EvidenceFlow wraps it.
 
 ---
 
-## What It Does
+## Why fail-closed matters
 
-A local, sovereign, evidence-verified RAG pipeline built on IBM Granite, running 
-via Ollama on an M1 MacBook Air. It is the first ship in the fleet that verifies 
-its own answers against retrieved evidence before returning them.
+Every RAG system can retrieve. The question is what it does when the evidence is thin. Most answer anyway — fluently, confidently, sometimes wrong. EvidenceFlow inverts that: **an answer without evidence is not an answer; it is a guess wearing one.** Built for genealogy and any domain where a plausible guess costs more than admitting uncertainty. This is the ship where the documentation doctrine — every claim sourced, every gap flagged — became executable code.
 
 ---
 
-## Architecture
+## Requirements
 
-- **Runtime:** Local, sovereign execution
-- **Model:** IBM Granite (`granite4.1:3b` via Ollama)
-- **Pipeline:** Agentic RAG with EvidenceFlow verification
-- **Data source:** Local files — the Mirror personal archive
-- **Storage:** Vector database (ChromaDB)
-- **Cloud dependency:** None
+- Python 3 with: `langchain`, `langchain-community`, `langchain-text-splitters`, `langchain-ollama`, `langchain-chroma`, `uuid`, `datetime`
+- [Ollama](https://ollama.com) running locally, with `granite4.1:3b` and `nomic-embed-text` pulled
+- `data/CURATED_PUBLIC_DATA.md` — your own corpus
 
 ---
 
-## What Makes It Different
+## Quickstart
 
-| Capability | Description |
-|---|---|
-| **Retrieval** | Searches Mirror documents via ChromaDB |
-| **Generation** | Generates answers using `granite4.1:3b` via Ollama |
-| **Agentic reasoning** | Uses tool-calling to decide when to retrieve |
-| **Evidence ID assignment** | Assigns a unique ID to every retrieved chunk |
-| **Citation generation** | Includes citations linking back to evidence IDs |
-| **Verification check** | Confirms each claim has a corresponding evidence ID |
-| **Fail-closed behavior** | Abstains from answering if evidence is missing |
-| **Fully sovereign** | Runs entirely locally — no cloud, no external APIs |
+1. Install the packages named at the top of Ship5_IBM_Granite_Agentic_RAG_EvidenceFlow_demo.py
+2. Pull the models: ollama pull granite4.1:3b && ollama pull nomic-embed-text
+3. Put your corpus in data/CURATED_PUBLIC_DATA.md
+4. Run: python3 Ship5_IBM_Granite_Agentic_RAG_EvidenceFlow_demo.py
+Watch the evidence registry fill as the system retrieves.
+text
+
 
 ---
 
-## Pipeline
-
-1. Read local documents from the Mirror archive
-2. Chunk into pieces
-3. Vectorize (embed) each chunk
-4. Store vectors in ChromaDB
-5. Query at runtime → the agent retrieves relevant chunks
-6. Assign evidence IDs to retrieved chunks
-7. Generate answer with citations
-8. Verify each claim has a matching evidence ID
-9. Return answer, or abstain if evidence is missing
 
 ---
 
-## Integration
+## The fleet
 
-- Reads local data — the Mirror personal archive
-- Chunks, vectorizes, stores in ChromaDB
-- Agent decides when to query
-- **EvidenceFlow verification layer** — the only ship that proves its answers
-- **No cloud dependency.** Local-first. Sovereign. Runs on Ollama.
+- **[Ship 1](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship1-deepseek-rag-local)** — DeepSeek RAG, rebuilt local after AWS lost the original
+- **[Ship 2](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship2-ibm-granite-agentic)** — IBM Granite Agentic RAG
+- **[Ship 3](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship3-ibm-granite)** — IBM Granite Standard RAG
+- **[Ship 4](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship4-ibm-granite-agentic)** — IBM Granite Agentic RAG
+- **[Ship 5](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship5-ibm-granite-agentic-evidenceflow)** — IBM Granite Agentic RAG with EvidenceFlow
 
----
+**[Suite: Ingestion Tools](https://github.com/qaevelyn/a-mirror-of-my-becoming-suite-ingestion-tools)** — the tooling that gets documents into the vector stores these ships read from.
 
-## Credits and Attribution
+**[A Mirror of My Becoming](https://github.com/qaevelyn/a-mirror-of-my-becoming)** — the parent index for the entire practice.
 
-**Foundation:**
-This notebook is built on the foundational structure and methods learned from the IBM 
-SkillsBuild lab: "Build a LangChain agentic RAG system using the Granite-4-H-Small 
-model in watsonx.ai." Original lab authored by Anna Gutowska. IBM SkillsBuild, 2026.
-
-**Inspiration:**
-The evidence verification layer (evidence IDs, citation verification, fail-closed 
-behavior) was inspired by Asaif Ali's EvidenceFlow project.
-https://github.com/AsaifAli/EvidenceFlow
-
-**My Additions:**
-- EvidenceFlow verification layer (evidence IDs, citation verification, fail-closed behavior)
-- Local sovereign execution (Ollama, no watsonx.ai cloud dependency)
-- Genealogy-specific adaptations (partial names, phonetic matching)
-- Containerized "Mirror of Becoming" output format
+**[Fleet index + SETUP.md](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-pipelines)** — how to point any ship at your own corpus.
 
 ---
 
-## Access and Copyright
 
-This work was created by Evelyn Caro. DeepSeek is the only collaborator — used as a tool 
-in the creative and technical process.
+## License
 
-This is a personal portfolio project and is not open for collaboration or external access. 
-The video and documentation speak for themselves.
+Dual-licensed:
 
-Copyright © 2026 Evelyn Caro. All rights reserved. Copyright registration is pending.
+- **AGPL-3.0** — free to use, modify, and redistribute under the terms of the license. Full text in [LICENSE](LICENSE).
+- **Commercial license** — available for organizations that need to use the code without the AGPL-3.0 obligations. Contact the author for pricing.
+
+Free does not mean free to exploit. If you build a product on this work, the author expects to be paid.
+
+---
+
+## Author
+
+**Evelyn Caro** — Sovereign AI Builder.
+
+**[qaevelyn.github.io](https://qaevelyn.github.io)** · Commercial licensing: **evelyn.caro.cloud@gmail.com**
+
+---
+
+© 2026 Evelyn Caro. All rights reserved.
