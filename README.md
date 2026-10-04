@@ -2,7 +2,7 @@
 
 **The ship that refuses to guess.**
 
-Ship 5 of A Mirror of My Becoming. Built August–September 2026 on an 8 GB Intel MacBook Air. Runs fully local: IBM Granite 4.1 (3B) and nomic-embed-text via Ollama, with an EvidenceFlow verification layer over the RAG core. Every retrieval is assigned a traceable evidence ID. Fail-closed by design.
+Ship 5 of A Mirror of My Becoming™. Built August–September 2026 on an 8 GB Intel MacBook Air. Runs fully local: IBM Granite 4.1 (3B) and nomic-embed-text via Ollama, with an EvidenceFlow verification layer over the RAG core. Every retrieval is assigned a traceable evidence ID. Fail-closed by design.
 
 **Author:** Evelyn Caro
 
@@ -60,7 +60,7 @@ text
 
 **[Suite: Ingestion Tools](https://github.com/qaevelyn/a-mirror-of-my-becoming-suite-ingestion-tools)** — the tooling that gets documents into the vector stores these ships read from.
 
-**[A Mirror of My Becoming](https://github.com/qaevelyn/a-mirror-of-my-becoming)** — the parent index for the entire practice.
+**[A Mirror of My Becoming™](https://github.com/qaevelyn/a-mirror-of-my-becoming)** — the parent index for the entire practice.
 
 **[Fleet index + SETUP.md](https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-pipelines)** — how to point any ship at your own corpus.
 
