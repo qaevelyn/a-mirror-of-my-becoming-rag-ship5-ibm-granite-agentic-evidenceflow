@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Ship 5 — IBM Granite Agentic RAG with EvidenceFlow"
+type: software
+authors:
+  - family-names: Caro
+    given-names: Evelyn
+    email: evelyn.caro.cloud@gmail.com
+    orcid: "https://orcid.org/0009-0007-3295-3147"
+repository-code: "https://github.com/qaevelyn/a-mirror-of-my-becoming-rag-ship5-ibm-granite-agentic-evidenceflow"
+license: AGPL-3.0
+version: v1.0
+date-released: "2026-10-11"
