@@ -2,7 +2,7 @@
 # ============================================================
 # Copyright (c) 2026 Evelyn Caro. All rights reserved.
 # A Mirror of My Becoming
-# https://evelynacaro.github.io
+# https://qaevelyn.github.io
 # For licensing inquiries: evelyn.caro.cloud@gmail.com
 # ============================================================
 

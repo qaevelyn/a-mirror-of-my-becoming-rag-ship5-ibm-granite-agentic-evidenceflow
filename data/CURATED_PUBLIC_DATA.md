@@ -2,7 +2,7 @@
 
 **Author:** Evelyn Caro (@qaevelyn)
 **Project:** A Mirror of My Becoming
-**Site:** https://evelynacaro.github.io
+**Site:** https://qaevelyn.github.io
 **Date:** September 18, 2026
 
 ---
@@ -25,7 +25,7 @@ The project consists of five working RAG pipelines ("ships"), each one testing a
 | Ship 4 | IBM Granite | Agentic RAG |
 | Ship 5 | IBM Granite | Agentic RAG + EvidenceFlow verification |
 
-Each ship is a working system. Each one built on the previous. Each one documented in the public portfolio at https://evelynacaro.github.io.
+Each ship is a working system. Each one built on the previous. Each one documented in the public portfolio at https://qaevelyn.github.io.
 
 ---
 
@@ -50,7 +50,7 @@ Sovereign AI is not about avoiding the cloud — it's about owning the systems t
 
 ## Contact
 
-- Portfolio: https://evelynacaro.github.io
+- Portfolio: https://qaevelyn.github.io
 - LinkedIn: https://www.linkedin.com/in/evelynacaro/
 - GitHub: https://github.com/qaevelyn
 - Credly: https://www.credly.com/users/evelyncaro
